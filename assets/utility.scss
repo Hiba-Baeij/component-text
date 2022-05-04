@@ -1,0 +1,44 @@
+.svg-primary {
+  fill: theme('colors.primary');
+}
+
+.svg-red-dark {
+  fill: theme('colors.red-dark');
+}
+
+.svg-red-light {
+  fill: theme('colors.red-light');
+}
+
+
+.svg-dark {
+  fill: theme('colors.dark');
+}
+
+.svg-white {
+  fill: theme('colors.white');
+}
+
+
+
+html {
+
+  overflow: overlay;
+
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    position: absolute;
+    z-index: -1;
+    width: 5px;
+
+
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #afafaf;
+    opacity: 0.5;
+    border-radius: 15px;
+
+
+  }
+}

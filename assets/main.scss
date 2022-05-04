@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Tajwal Light";
+  src: url("./fonts/Tajwal/Tajawal-Light.ttf")
+}
+
+@font-face {
+  font-family: "Tajwal";
+  src: url("./fonts/Tajwal/Tajawal-Regular.ttf")
+}
+
+@font-face {
+  font-family: "Montserrat-Light";
+  src: url("./fonts/Montrserrat/Montserrat-Light.ttf")
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("./fonts/Montrserrat/Montserrat-Bold.ttf")
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montrserrat/Montserrat-Medium.ttf")
+}
+
+body {
+  font-family: "Montserrat",
+    "Tajwal"
+}
+
+html {
+  scroll-behavior: smooth;
+}
