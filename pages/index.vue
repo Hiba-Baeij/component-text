@@ -98,7 +98,7 @@ section.main-page {
   padding: 30px;
   .tabs {
     background-color: #fefefe !important;
-    min-width: 700px;
+    min-width: 750px;
     height: 60px;
     padding: 10px 20px;
     button {
