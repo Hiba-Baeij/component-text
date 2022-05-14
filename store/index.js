@@ -1,7 +1,5 @@
-export default {
-  state: () => ({}),
+export const state = () => ({});
+export const mutations = {};
 
-  mutations: {},
-
-  actions: {},
-};
+export const actions = {};
+export const getters = {};

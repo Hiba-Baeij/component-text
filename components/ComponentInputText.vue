@@ -1,25 +1,14 @@
 <template>
   <div>
-    <div
-      v-for="item in multiLang"
-      :key="item.id"
-      class="mb-10 flex flex-row gap-x-8 items-center justify-center"
-    >
-      <div class="bg shadow flex items-center justify-center">
-        <img :src="require(`assets/svg/${item.name}.svg`)" alt="" />
-      </div>
-
-      {{ item.value }}
-      <input
-        v-bind="$attrs"
-        :type="type"
-        :id="item.id"
-        :multiLang="item"
-        v-model="item.value"
-        :placeholder="item.label"
-        class="shadow"
-      />
-    </div>
+    {{ innerVal }}
+    <input
+      v-bind="$attrs"
+      :type="type"
+      :id="id"
+      v-model="innerVal"
+      :placeholder="placeholder"
+      class="shadow"
+    />
   </div>
 </template>
 
@@ -29,7 +18,8 @@ export default {
     id: Number,
     type: String,
     label: String,
-    multiLang: Array,
+    placeholder: String,
+    // multiLang: Array,
     value: {
       type: null,
     },

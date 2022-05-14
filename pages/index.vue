@@ -1,45 +1,63 @@
 <template>
-  <section class="flex flex-col gap-y-8 items-center justify-start">
-    <div class="flex flex-row gap-x-8 items-start justify-center my-10">
-      <label class="typo__label">Select Language</label>
-      <multiselect
-        v-model="value"
-        label="name"
-        track-by="icon"
-        :options="options"
-        :multiple="true"
-        :taggable="true"
-        @tag="addTag"
-      ></multiselect>
-    </div>
-    <transition name="fade">
-      <div
-        v-if="value.find((ele) => ele.name)"
-        class="form shadow-2xl flex flex-col items-center justify-center"
+  <section class="main-page flex flex-col gap-y-8 items-center justify-start">
+    <div class="tabs shadow-xl flex items-center gap-x-10 justify-between">
+      <button
+        @click="value = 'French'"
+        :class="value == 'French' ? 'border' : 'noneBorder'"
       >
+        <img :src="icon1" alt="" />
+        French
+      </button>
+      <button
+        @click="value = 'Arabic'"
+        :class="value == 'Arabic' ? 'border' : 'noneBorder'"
+      >
+        <img :src="icon2" alt="" />
+        Arabic
+      </button>
+      <button
+        @click="value = 'English'"
+        :class="value == 'English' ? 'border' : 'noneBorder'"
+      >
+        <img :src="icon3" alt="" />
+
+        English
+      </button>
+    </div>
+    <div
+      class="form"
+      v-for="item in languageList"
+      :key="item.id"
+      :class="item.name == value ? 'showInput' : 'displayInput'"
+    >
+      <div class="flex items-center gap-x-8 justify-center">
+        <div class="bg shadow flex items-center justify-center">
+          <img :src="require(`assets/svg/${item.name}.svg`)" alt="" />
+        </div>
         <ComponentInputText
-          :multiLang="value"
-          v-model="options"
+          :id="item.id"
+          :placeholder="item.label"
+          v-model="item.value"
         ></ComponentInputText>
-        <button type="button">Submit</button>
       </div>
-    </transition>
+    </div>
   </section>
 </template>
 
 <script>
-import Multiselect from "vue-multiselect";
 import ComponentInputText from "~/components/ComponentInputText.vue";
 export default {
   components: {
-    Multiselect,
     ComponentInputText,
   },
   data() {
     return {
-      value: [],
+      icon1: require("assets/svg/French.svg"),
+      icon2: require("assets/svg/Arabic.svg"),
+      icon3: require("assets/svg/English.svg"),
 
-      options: [
+      value: "French",
+      languageList: [
         {
           languageId: "1", //language English
           value: "", //value input
@@ -64,59 +82,55 @@ export default {
       ],
     };
   },
-  methods: {
-    addTag(newTag) {
-      const tag = {
-        name: newTag,
-        icon: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
-      };
-      this.options.push(tag);
-      this.value.push(tag);
-    },
-  },
+  methods: {},
 
   mounted() {},
 };
 </script>
 <style lang="scss">
-@import "vue-multiselect/dist/vue-multiselect.min.css";
-
 body {
   margin: 0;
   background-color: rgb(241 245 249);
 }
-
-.multiselect__tag {
-  background-color: #199d00 !important;
-  span {
-    color: #fff !important;
-  }
-}
-section {
+section.main-page {
   height: 100vh;
   width: 100vw;
   padding: 30px;
+  .tabs {
+    background-color: #fefefe !important;
+    min-width: 700px;
+    height: 60px;
+    padding: 10px 20px;
+    button {
+      background: none !important;
+      color: #199d00;
+      outline: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      img {
+        width: 30px;
+        height: 40px;
+      }
+      &.border {
+        border-bottom: 2px solid #199d00 !important;
+      }
+      &.noneBorder {
+        border: 0 !important;
+      }
 
-  label {
-    padding-top: 10px;
-  }
-  .multiselect {
-    width: 500px;
-    height: 50px;
+      height: 60px;
+      width: 100px;
+    }
   }
   .form {
-    // border: 1px solid #cfcaca;
-    border-radius: 5px;
-    background-color: #fff;
-    padding: 5rem;
-  }
-  button {
-    width: 400px;
-    height: 60px;
-    background-color: #199d00;
-    color: #fff;
-    border-radius: 5px;
-    outline: none;
+    &.showInput {
+      display: flex !important;
+    }
+    &.displayInput {
+      display: none !important;
+    }
   }
   .bg {
     background-color: #fefefe;
@@ -127,22 +141,6 @@ section {
     img {
       width: 55px;
       height: 50px;
-    }
-  }
-  .fade-enter-active {
-    animation: bounce-in 0.5s;
-  }
-  .fade-leave-active {
-    animation: bounce-in 0.5s;
-  }
-  @keyframes bounce-in {
-    0% {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
-    100% {
-      // transform: translateY(10px);
-      opacity: 1;
     }
   }
 }
